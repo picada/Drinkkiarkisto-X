@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Lisää tai poista drinkkejä</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Drinkit</h1>
+
+        <ol>
+            <li th:each="drinkki: ${drinkit}">
+                <span th:text="${drinkki.nimi}">drinkin nimi</span><span>Tähän poistonappi</span>
+            </li>
+        </ol>
+        <h2>Ja tähän alle lisäystoiminto</h2>
+        
+        <a href="/"> Takaisin etusivulle</a>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Raaka-aine</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1><span th:text="${aine.nimi}">drinkki</span></h1>
+
+        <p>Tältä sivulta löydät tarkemmat tilastot raaka-aineeseen <span th:text="${aine.nimi}">aine</span> liittyen.</p>
+        <h2>Raaka-aine <span th:text="${aine.nimi}">drinkki</span> on käytössä seuraavissa drinkeissä:</h2>
+
+        <ul>
+            <li th:each="drinkki: ${drinkit}">
+                <span th:text="${drinkki.nimi}">drinkki nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
+            </li>
+        </ul>
+
+        <div th:if="${drinkit.empty}">
+        <p>Raaka-aine ei toistaiseksi ole käytössä yhdessäkään reseptissä</p>
+        </div>
+        
+        <h2>Muuta tilastointia, mitä?</h2>
+
+        <a href="/"> Takaisin etusivulle</a>
+    </body>
+</html>

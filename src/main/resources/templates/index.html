@@ -2,15 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <title>Otsikko</title>
+        <title>Drinkkejä jee!</title>
         <meta charset="utf-8" />
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h1>Drinkkiarkisto</h1>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
+        <h2>Tervetuloa!</h2>
+       
+        <p>Alla olevan valikon kautta pääset tutustumaan tietokantaamme tallennettuja drinkkejä, voit myös halutessasi lisätä oman drinkkireseptisi.
+        </p> 
+        <ol>
+            <li th:each="drinkki: ${drinkit}">
+                <span th:text="${drinkki.nimi}">drinkki nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
+            </li>
+        </ol>
+        
+        
 
-        <p><a href="/opiskelijat">Tästä opiskelijalistaukseen.</a></p>
+        <p><a href="/drinkit">Tästä uutta lisäilemään.</a></p>
+        <p><a href="/aineet">Tästä raaka-aineita kuikuilemaan.</a></p>
     </body>
 </html>

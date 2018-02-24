@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Raaka-ainelistaus</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Raaka-aineet</h1>
+
+        <ol>
+            <li th:each="aine: ${aineet}">
+                <span th:text="${aine.nimi}">aineen nimi</span> <a th:href="${'/aineet/' + aine.id}">Tilastot</a>Ja lisäks poistonappi!
+            </li>
+        </ol>
+        
+        <h2> Ja tähän alle pitäis saada raaka-aineiden lisäystoiminto</h2>
+        
+        <a href="/"> Takaisin etusivulle</a>
+    </body>
+</html>
