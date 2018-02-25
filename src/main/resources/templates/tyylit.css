@@ -13,7 +13,8 @@ body {
 
 .content {
     box-sizing: border-box;
-    width: 700px;
+    min-width: fit-content;
+    max-width: 700px;
     min-height: 900px;
     max-height: 100%;
     box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
@@ -21,6 +22,7 @@ body {
     background-color: rgba(255, 255, 255, 0.45);
     margin-left: 35px;
     margin-top: 20px;
+    margin-right: 35px;
     font-family: Open Sans, sans-serif;
     color: #212121;
 }
@@ -70,7 +72,8 @@ input[type=submit] {
 
 .navbar {
     box-sizing: border-box;
-    width: 700px;
+    min-width: fit-content;
+    max-width: 700px;
     max-height: 100%;
     padding-top: 70px;
     padding-left: 70px;
@@ -78,6 +81,7 @@ input[type=submit] {
     padding-bottom: 35px;
     margin-left: 35px;
     margin-top: 20px; 
+    margin-right: 35px;
     text-align: center;
     color: white;
 }
