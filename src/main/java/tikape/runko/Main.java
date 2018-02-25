@@ -1,5 +1,7 @@
 package tikape.runko;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
 import spark.ModelAndView;
 import static spark.Spark.*;
@@ -8,6 +10,7 @@ import tikape.runko.database.Database;
 import tikape.runko.database.DrinkkiDao;
 import tikape.runko.database.AineDao;
 import tikape.runko.database.DrinkkiAineDao;
+import tikape.runko.domain.*;
 
 public class Main {
 
@@ -58,5 +61,13 @@ public class Main {
 
             return new ModelAndView(map, "aineet");
         }, new ThymeleafTemplateEngine());
+        
+        post("/lisaaAine", (req, res) -> {
+           RaakaAine aine = new RaakaAine(-1, (req.queryParams("nimi")));
+           aineet.save(aine);
+           
+           res.redirect("/aineet");
+           return "";
+        });
     }
 }

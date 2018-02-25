@@ -14,9 +14,15 @@
                 <span th:text="${aine.nimi}">aineen nimi</span> <a th:href="${'/aineet/' + aine.id}">Tilastot</a>Ja lisäks poistonappi!
             </li>
         </ol>
-        
-        <h2> Ja tähän alle pitäis saada raaka-aineiden lisäystoiminto</h2>
-        
+
+        <h2> Lisää uusi raaka-aine:</h2>
+
+        <form method="POST" action="/lisaaAine">
+            Raaka-aineen nimi:<br/>
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisää RaakaAine"/>
+        </form>
+
         <a href="/"> Takaisin etusivulle</a>
     </body>
 </html>

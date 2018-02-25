@@ -72,5 +72,18 @@ public class AineDao implements Dao<RaakaAine, Integer> {
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
     }
+    
+
+    public RaakaAine save(RaakaAine object) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "INSERT INTO RaakaAine (nimi) VALUES (?)");
+            stmt.setString(1, object.getNimi());
+            stmt.executeUpdate();
+            conn.close();
+        }
+
+        return null;
+    }
 
 }
