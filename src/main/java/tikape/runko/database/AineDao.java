@@ -129,5 +129,18 @@ public class AineDao implements Dao<RaakaAine, Integer> {
             return new RaakaAine(result.getInt("id"), result.getString("nimi"));
         }
     }
+    
+
+    public RaakaAine save(RaakaAine object) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "INSERT INTO RaakaAine (nimi) VALUES (?)");
+            stmt.setString(1, object.getNimi());
+            stmt.executeUpdate();
+            conn.close();
+        }
+
+        return null;
+    }
 
 }
