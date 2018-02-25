@@ -11,13 +11,11 @@ import tikape.runko.database.Database;
 import tikape.runko.database.DrinkkiDao;
 import tikape.runko.database.AineDao;
 import tikape.runko.database.DrinkkiAineDao;
-<<<<<<< HEAD
 import tikape.runko.domain.Drinkki;
 import tikape.runko.domain.DrinkkiRaakaAine;
 import tikape.runko.domain.RaakaAine;
-=======
 import tikape.runko.domain.*;
->>>>>>> 0d55d252b68c805c57707877fcb5a8f9f95116a6
+
 
 public class Main {
 
@@ -72,7 +70,6 @@ public class Main {
 
             return new ModelAndView(map, "aineet");
         }, new ThymeleafTemplateEngine());
-<<<<<<< HEAD
 
         Spark.post("/aineet", (req, res) -> {
             RaakaAine aine = new RaakaAine(-1, req.queryParams("name"));
@@ -134,15 +131,7 @@ public class Main {
 
             res.redirect("/drinkit/"+drinkkiId);
             return "";
-=======
-        
-        post("/lisaaAine", (req, res) -> {
-           RaakaAine aine = new RaakaAine(-1, (req.queryParams("nimi")));
-           aineet.save(aine);
-           
-           res.redirect("/aineet");
-           return "";
->>>>>>> 0d55d252b68c805c57707877fcb5a8f9f95116a6
+
         });
     }
 }
