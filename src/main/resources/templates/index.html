@@ -4,24 +4,35 @@
     <head>
         <title>Drinkkejä jee!</title>
         <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" type="text/css" href="tyylit.css"/>
     </head>
 
     <body>
-        <h1>Drinkkiarkisto</h1>
+        
+        <div class="navbar">
+            <span id="header">DRINKKIARKISTO X</span><br/><br/>
+            <a class="nav" href="/">ETUSIVU</a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="/drinkit">LISÄÄ TAI MUOKKAA DRINKKEJÄ </a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="/aineet">RAAKA-AINEET</a>
+        </div>
+        
+        <div class="content">
 
-        <h2>Tervetuloa!</h2>
+        <h2>Tervetuloa drinkkiarkistoon!</h2>
        
-        <p>Alla olevan valikon kautta pääset tutustumaan tietokantaamme tallennettuja drinkkejä, voit myös halutessasi lisätä oman drinkkireseptisi.
+        <p>Alla olevan listauksen kautta pääset tutustumaan tietokantaamme tallennettuihin drinkkeihin.<br/><br/>
+            Halutessasi voit myös lisätä arkistoon oman drinkkireseptisi tai tarkastella syötettyjä raaka-aineita.
         </p> 
-        <ol>
+        <ul>
             <li th:each="drinkki: ${drinkit}">
-                <span th:text="${drinkki.nimi}">drinkki nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
+                 <a th:href="${'/drinkit/' + drinkki.id}"><span th:text="${drinkki.nimi}">drinkki nimi</span></a>
             </li>
-        </ol>
+        </ul>
         
         
-
-        <p><a href="/drinkit">Tästä uutta lisäilemään.</a></p>
-        <p><a href="/aineet">Tästä raaka-aineita kuikuilemaan.</a></p>
+        </div>;
     </body>
 </html>

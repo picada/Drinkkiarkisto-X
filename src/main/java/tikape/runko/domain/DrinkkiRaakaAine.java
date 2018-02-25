@@ -81,7 +81,7 @@ public class DrinkkiRaakaAine implements Comparable<DrinkkiRaakaAine> {
     
     public String toString() {
         String ohjeet = "";
-        if (this.ohje != null) {
+        if (!this.ohje.equals("")) {
             ohjeet = ": "+ ohje;
         }
         return maara + " " + aineNimi +  ohjeet;

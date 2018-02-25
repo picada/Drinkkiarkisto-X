@@ -4,20 +4,44 @@
     <head>
         <title>Resepti</title>
         <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" type="text/css" href="../tyylit.css"/>
     </head>
 
     <body>
-        <h1><span th:text="${drinkki.nimi}">drinkki</span></h1>
 
-        <p>Tältä sivulta löydät tarkemmat ainekset ja ohjeet drinkkiin <span th:text="${drinkki.nimi}">drinkki</span> .</p>
-        <h2>Ohje</h2>
-        
-        <ol>
-            <li th:each="aines: ${ohje}">
-                <span th:text="${aines.toString()}">drinkin nimi</span>
-            </li>
-        </ol>
-        
-        <a href="/"> Takaisin etusivulle</a>
+        <div class="navbar">
+            <span id="header">DRINKKIARKISTO X</span><br/><br/>
+            <a class="nav" href="../">ETUSIVU</a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="../drinkit">LISÄÄ TAI MUOKKAA DRINKKEJÄ </a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="../aineet">RAAKA-AINEET</a>
+        </div>
+
+        <div class="content">
+            <h2><span th:text="${drinkki.nimi}">drinkki</span></h2>
+
+            <p>Tältä sivulta löydät tarkemmat ainekset ja ohjeet drinkkiin <span th:text="${drinkki.nimi}">drinkki</span>.</p>
+            <h3>Ainekset</h3>
+
+            <ol id="igrlist">
+                <li th:each="aines: ${ohje}">    
+                    
+                    <form method="POST" th:action="@{~/drinkit/{id1}/{id2}/delete(id2=${aines.raakaAineId}, id1=${drinkki.id})}">
+                        <span th:text="${aines.toString()}">aine</span>
+                        <input id="deleteigr" type="submit" value="Poista"/>
+                    </form> <br/>
+
+                </li>
+            </ol>
+
+            <div th:if="${ohje.empty}">    
+                <p>Reseptiin ei toistaiseksi ole lisätty yhtään raaka-ainetta</p>
+            </div>
+
+            <br/>
+            <a href="/drinkit"> Muokkaa reseptiä?</a>
+        </div>
     </body>
 </html>

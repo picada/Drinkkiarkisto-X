@@ -4,18 +4,74 @@
     <head>
         <title>Lisää tai poista drinkkejä</title>
         <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" type="text/css" href="tyylit.css"/>
     </head>
 
     <body>
-        <h1>Drinkit</h1>
 
-        <ol>
-            <li th:each="drinkki: ${drinkit}">
-                <span th:text="${drinkki.nimi}">drinkin nimi</span><span>Tähän poistonappi</span>
-            </li>
-        </ol>
-        <h2>Ja tähän alle lisäystoiminto</h2>
-        
-        <a href="/"> Takaisin etusivulle</a>
+        <div class="navbar">
+            <span id="header">DRINKKIARKISTO X</span><br/><br/>
+            <a class="nav" href="/">ETUSIVU</a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="/drinkit">LISÄÄ TAI MUOKKAA DRINKKEJÄ </a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="/aineet">RAAKA-AINEET</a>
+        </div>
+
+        <div class="content">
+            <h2>Lisää tai muuokkaa drinkkejä</h2>
+
+            <div class="list">
+                <ul>
+                    <li th:each="drinkki: ${drinkit}">
+
+                        
+                        <form method="POST" th:action="@{~/drinkit/{id}/delete(id=${drinkki.id})}">
+                            <a th:href="${'/drinkit/' + drinkki.id}"><span th:text="${drinkki.nimi}" >drinkki nimi</span></a>
+                            <input type="submit" value="Poista"/>
+                        </form><br/>
+                    </li>
+
+                </ul>
+            </div   >
+
+
+            <h3>Lisää uusi drinkki</h3>
+
+            <form method="POST" action="/drinkit">
+                Drinkin nimi <br/>
+                <input type="text" name="name" required="true"/><br/>
+                <input type="submit" value="Lisää"/>
+            </form>
+
+
+            <h4>Lisää raaka-aineita</h4>
+
+            <form method="POST" action="/lisaa">
+
+                Drinkin nimi <br/>
+                <select name="drinkki">
+                    <option th:each="drinkki: ${drinkit}" th:value="${drinkki.id}" th:text="${drinkki.nimi}">
+                        drinkki
+                    </option>
+                </select><br/>
+                Lisättävä raaka-aine<br/>
+                <select name="aine">
+                    <option th:each="aine: ${aineet}" th:value="${aine.id}" th:text="${aine.nimi}">
+                        drinkki
+                    </option>
+                </select><br/>
+                Järjestys*<br/>
+                <input type="number" name="jarj" required="true" min="1"/><br/>
+                Määrä*<br/>
+                <input type="text" name="maara" required="true"/><br/>
+                Ohje<br/>
+                <input type="text" name="ohje"/><br/>
+                <input type="submit" value="Lisää"/>
+            </form>
+            <p>* = Pakollinen kenttä</p>
+
+        </div>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
-<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="61" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="3.0.1" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-GB; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="170" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="3.0.1" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-GB; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
 <!-- ======================================================================== -->
 <!-- This file is an AbiWord document.                                        -->
 <!-- AbiWord is a free, Open Source word processor.                           -->
@@ -77,7 +77,95 @@
 <p style="Normal" xid="60" props="text-align:left; dom-dir:ltr"><c>    }</c></p>
 <p style="Normal" xid="61" props="text-align:left; dom-dir:ltr"><c></c></p>
 <p style="Normal" xid="39" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="62" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="63" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="64" props="text-align:left; dom-dir:ltr"><c>public RaakaAine saveOrUpdate(String aine) throws SQLException {</c></p>
+<p style="Normal" xid="65" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="66" props="text-align:left; dom-dir:ltr"><c>        // tallennus onnistuu vaan, jos tietokannassa ei ole jo samannimistä raaka-ainetta, tsekataan ensin löytyykö</c></p>
+<p style="Normal" xid="67" props="text-align:left; dom-dir:ltr"><c>        </c></p>
+<p style="Normal" xid="68" props="text-align:left; dom-dir:ltr"><c>        try (Connection conn = database.getConnection()) {</c></p>
+<p style="Normal" xid="69" props="text-align:left; dom-dir:ltr"><c>            PreparedStatement stmt = conn.prepareStatement("SELECT id, name FROM Task WHERE name = ?");</c></p>
+<p style="Normal" xid="70" props="text-align:left; dom-dir:ltr"><c>            stmt.setString(1, aine);</c></p>
+<p style="Normal" xid="71" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="72" props="text-align:left; dom-dir:ltr"><c>            ResultSet result = stmt.executeQuery();</c></p>
+<p style="Normal" xid="73" props="text-align:left; dom-dir:ltr"><c>            if (!result.next()) {</c></p>
+<p style="Normal" xid="74" props="text-align:left; dom-dir:ltr"><c>                return null;</c></p>
+<p style="Normal" xid="75" props="text-align:left; dom-dir:ltr"><c>            }</c></p>
+<p style="Normal" xid="76" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="77" props="text-align:left; dom-dir:ltr"><c>            stmt = conn.prepareStatement("INSERT INTO RaakaAine (name) VALUES (?)");</c></p>
+<p style="Normal" xid="78" props="text-align:left; dom-dir:ltr"><c>            stmt.setString(1, aine);</c></p>
+<p style="Normal" xid="79" props="text-align:left; dom-dir:ltr"><c>            stmt.executeUpdate();</c></p>
+<p style="Normal" xid="80" props="text-align:left; dom-dir:ltr"><c>        }</c></p>
+<p style="Normal" xid="81" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="82" props="text-align:left; dom-dir:ltr"><c>        return null;</c></p>
+<p style="Normal" xid="83" props="text-align:left; dom-dir:ltr"><c>    }</c></p>
+<p style="Normal" xid="84" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="85" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="86" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="87" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="88" props="text-align:left; dom-dir:ltr"><c>    @Override</c></p>
+<p style="Normal" xid="89" props="text-align:left; dom-dir:ltr"><c>    public RaakaAine saveOrUpdate(RaakaAine aine) throws SQLException {</c></p>
+<p style="Normal" xid="90" props="text-align:left; dom-dir:ltr"><c>        // simply support saving -- disallow saving if user with </c></p>
+<p style="Normal" xid="91" props="text-align:left; dom-dir:ltr"><c>        // same name exists</c></p>
+<p style="Normal" xid="92" props="text-align:left; dom-dir:ltr"><c>        RaakaAine check = findByName(aine.getNimi());</c></p>
+<p style="Normal" xid="93" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="94" props="text-align:left; dom-dir:ltr"><c>        if (check != null) {</c></p>
+<p style="Normal" xid="95" props="text-align:left; dom-dir:ltr"><c>            return check;</c></p>
+<p style="Normal" xid="96" props="text-align:left; dom-dir:ltr"><c>        }</c></p>
+<p style="Normal" xid="97" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="98" props="text-align:left; dom-dir:ltr"><c>        try (Connection conn = database.getConnection()) {</c></p>
+<p style="Normal" xid="99" props="text-align:left; dom-dir:ltr"><c>            PreparedStatement stmt = conn.prepareStatement("INSERT INTO RaakaAine (name) VALUES (?)");</c></p>
+<p style="Normal" xid="100" props="text-align:left; dom-dir:ltr"><c>            stmt.setString(1, aine.getNimi());</c></p>
+<p style="Normal" xid="101" props="text-align:left; dom-dir:ltr"><c>            stmt.executeUpdate();</c></p>
+<p style="Normal" xid="102" props="text-align:left; dom-dir:ltr"><c>        }</c></p>
+<p style="Normal" xid="103" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="104" props="text-align:left; dom-dir:ltr"><c>        return findByName(aine.getNimi());</c></p>
+<p style="Normal" xid="105" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="106" props="text-align:left; dom-dir:ltr"><c>    }</c></p>
+<p style="Normal" xid="107" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="108" props="text-align:left; dom-dir:ltr"><c>    private RaakaAine findByName(String name) throws SQLException {</c></p>
+<p style="Normal" xid="109" props="text-align:left; dom-dir:ltr"><c>        try (Connection conn = database.getConnection()) {</c></p>
+<p style="Normal" xid="110" props="text-align:left; dom-dir:ltr"><c>            PreparedStatement stmt = conn.prepareStatement("SELECT id, name FROM Task WHERE name = ?");</c></p>
+<p style="Normal" xid="111" props="text-align:left; dom-dir:ltr"><c>            stmt.setString(1, name);</c></p>
+<p style="Normal" xid="112" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="113" props="text-align:left; dom-dir:ltr"><c>            ResultSet result = stmt.executeQuery();</c></p>
+<p style="Normal" xid="114" props="text-align:left; dom-dir:ltr"><c>            if (!result.next()) {</c></p>
+<p style="Normal" xid="115" props="text-align:left; dom-dir:ltr"><c>                return null;</c></p>
+<p style="Normal" xid="116" props="text-align:left; dom-dir:ltr"><c>            }</c></p>
+<p style="Normal" xid="117" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="118" props="text-align:left; dom-dir:ltr"><c>            return new RaakaAine(result.getInt("id"), result.getString("nimi"));</c></p>
+<p style="Normal" xid="119" props="text-align:left; dom-dir:ltr"><c>        }</c></p>
+<p style="Normal" xid="120" props="text-align:left; dom-dir:ltr"><c>    }</c></p>
 <p style="Normal" xid="37" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="121" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="130" props="text-align:left; dom-dir:ltr"><c>        &lt;p&gt;&lt;a href="/drinkit"&gt;Tästä uutta lisäilemään.&lt;/a&gt;&lt;/p&gt;</c></p>
+<p style="Normal" xid="131" props="text-align:left; dom-dir:ltr"><c>        &lt;p&gt;&lt;a href="/aineet"&gt;Tästä raaka-aineita kuikuilemaan.&lt;/a&gt;&lt;/p&gt;-		</c></p>
+<p style="Normal" xid="132" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="133" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="134" props="text-align:left; dom-dir:ltr"><c> &lt;!--&gt;&lt;span&gt;&lt;a th:href="${'/drinkit/' + aines.drinkkiId}" th:action="${'/drinkit/ ' + aines.drinkkiId + '/' + aines.raakaAineId + '/delete'}"&gt;(poista)&lt;/a&gt;&lt;/span&gt;</c></p>
+<p style="Normal" xid="135" props="text-align:left; dom-dir:ltr"><c>                        &lt;input type="hidden" name ="aineId" th:value="${aines.getRaakaAineId()}"/&gt;</c></p>
+<p style="Normal" xid="136" props="text-align:left; dom-dir:ltr"><c>                        </c></p>
+<p style="Normal" xid="137" props="text-align:left; dom-dir:ltr"><c>                        &lt;/!--&gt;</c></p>
+<p style="Normal" xid="138" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="139" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="163" props="text-align:left; dom-dir:ltr"><c>&lt;form method="POST" th:action="@{~/drinkit/{id1}/{id2}/delete(id2=${aines.raakaAineId}, id1=${drinkki.id})}"&gt;</c></p>
+<p style="Normal" xid="164" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="165" props="text-align:left; dom-dir:ltr"><c>                        &lt;span th:text="${aines.toString()}"&gt;aine&lt;/span&gt;</c></p>
+<p style="Normal" xid="166" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="167" props="text-align:left; dom-dir:ltr"><c>                        &lt;input type="submit" value="Poista"/&gt;</c></p>
+<p style="Normal" xid="168" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="169" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="170" props="text-align:left; dom-dir:ltr"><c>                    &lt;/form&gt; &lt;br/&gt;</c></p>
+<p style="Normal" xid="141" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="142" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="143" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="144" props="text-align:left; dom-dir:ltr"><c></c><field type="list_label" xid="145"></field><c type="list_label">	aine</c><c> <br/></c></p>
+<p style="Normal" xid="146" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="147" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="148" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="149" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="150" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="151" props="text-align:left; dom-dir:ltr"><c></c></p>
 <p style="Normal" xid="38" props="text-align:left; dom-dir:ltr"><c></c></p>
 </section>
 </abiword>

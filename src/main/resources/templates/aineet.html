@@ -4,19 +4,49 @@
     <head>
         <title>Raaka-ainelistaus</title>
         <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" type="text/css" href="tyylit.css"/>
+
     </head>
 
     <body>
-        <h1>Raaka-aineet</h1>
 
-        <ol>
-            <li th:each="aine: ${aineet}">
-                <span th:text="${aine.nimi}">aineen nimi</span> <a th:href="${'/aineet/' + aine.id}">Tilastot</a>Ja lisäks poistonappi!
-            </li>
-        </ol>
-        
-        <h2> Ja tähän alle pitäis saada raaka-aineiden lisäystoiminto</h2>
-        
-        <a href="/"> Takaisin etusivulle</a>
+        <div class="navbar">
+            <span id="header">DRINKKIARKISTO X</span><br/><br/>
+            <a class="nav" href="/">ETUSIVU</a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="/drinkit">LISÄÄ TAI MUOKKAA DRINKKEJÄ </a>
+            <span>&ensp;|&ensp;</span>
+            <a class="nav" href="/aineet">RAAKA-AINEET</a>
+        </div>
+
+        <div class="content">
+            <h2>Raaka-aineet</h2>
+
+            <p>Klikkaa raaka-aineen nimeä nähdäksesi tarkempia tietoja.</p>
+
+            <div class="list">
+                <ul>
+                    <li th:each="aine: ${aineet}">
+
+                        <form method="POST" th:action="@{~/aineet/{id}/delete(id=${aine.id})}">
+                            <a th:href="${'/aineet/' + aine.id}"><span th:text="${aine.nimi}">aineen nimi</span> </a>
+                            <input type="submit" value="Poista"/>
+                        </form><br/>
+                    </li>
+                </ul>
+            </div>
+
+            <h3>Lisää uusia raaka-aineita</h3>
+
+            <form method="POST" action="/aineet">
+                Raaka-aineen nimi <br/>
+                <input type="text" name="name" required="true"/><br/>
+                <input type="submit" value="Lisää raaka-aine"/>
+            </form>
+
+            <br/><br/>
+           
+        </div>
     </body>
-</html>
+</html> 

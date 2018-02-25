@@ -98,7 +98,50 @@ public class DrinkkiDao implements Dao<Drinkki, Integer> {
 
     @Override
     public void delete(Integer key) throws SQLException {
-        // ei toteutettu
+        
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM DrinkkiRaakaAine WHERE drinkki_id = ?");
+            stmt.setInt(1, key);
+            stmt.executeUpdate();
+            stmt = conn.prepareStatement("DELETE FROM Drinkki WHERE id = ?");
+            stmt.setInt(1, key);
+            stmt.executeUpdate();                                    
+        }
+        
+    }
+
+   @Override
+    public Drinkki saveOrUpdate(Drinkki aine) throws SQLException {
+        // simply support saving -- disallow saving if user with 
+        // same name exists
+        Drinkki check = findByName(aine.getNimi());
+
+        if (check != null) {
+            return check;
+        }
+
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Drinkki (nimi) VALUES (?)");
+            stmt.setString(1, aine.getNimi());
+            stmt.executeUpdate();
+        }
+
+        return findByName(aine.getNimi());
+
+    }
+
+    private Drinkki findByName(String name) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("SELECT id, nimi FROM Drinkki WHERE nimi = ?");
+            stmt.setString(1, name);
+
+            ResultSet result = stmt.executeQuery();
+            if (!result.next()) {
+                return null;
+            }
+
+            return new Drinkki(result.getInt("id"), result.getString("nimi"));
+        }
     }
 
 }
