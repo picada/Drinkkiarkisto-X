@@ -16,13 +16,16 @@ import tikape.runko.domain.DrinkkiRaakaAine;
 import tikape.runko.domain.RaakaAine;
 import tikape.runko.domain.*;
 
-
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        
+
+        if (System.getenv("PORT") != null) {
+            Spark.port(Integer.valueOf(System.getenv("PORT")));
+        }
+
         staticFileLocation("/templates");
-        
+
         Database database = new Database("jdbc:sqlite:Drinkkiarkisto.db");
 
         DrinkkiDao drinkit = new DrinkkiDao(database);
@@ -36,7 +39,6 @@ public class Main {
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-        
 
         get("/drinkit", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -86,9 +88,9 @@ public class Main {
             res.redirect("/drinkit");
             return "";
         });
-        
+
         Spark.post("/lisaa", (req, res) -> {
-            
+
             int aineId = Integer.parseInt(req.queryParams("aine"));
             int drinkkiId = Integer.parseInt(req.queryParams("drinkki"));
             int jarjestys = Integer.parseInt(req.queryParams("jarj"));
@@ -99,37 +101,36 @@ public class Main {
 
             DrinkkiRaakaAine aine = new DrinkkiRaakaAine(raakaAine.getNimi(), drinkkiId, aineId, jarjestys, maara, ohje);
             DrinkkiRaakaAine test = ohjeet.saveOrUpdate(aine);
-            
 
             res.redirect("/drinkit");
             return "";
         });
-        
+
         Spark.post("/drinkit/:id/delete", (req, res) -> {
-            
+
             int drinkkiId = Integer.parseInt(req.params(":id"));
             drinkit.delete(drinkkiId);
-            
+
             res.redirect("/drinkit");
             return "";
         });
-        
+
         Spark.post("/aineet/:id/delete", (req, res) -> {
-            
+
             int aineId = Integer.parseInt(req.params(":id"));
             aineet.delete(aineId);
-            
+
             res.redirect("/aineet");
             return "";
         });
-        
+
         Spark.post("/drinkit/:id1/:id2/delete", (req, res) -> {
             int drinkkiId = Integer.parseInt(req.params(":id1"));
             int aineId = Integer.parseInt(req.params(":id2"));
- 
+
             ohjeet.deleteByIds(drinkkiId, aineId);
 
-            res.redirect("/drinkit/"+drinkkiId);
+            res.redirect("/drinkit/" + drinkkiId);
             return "";
 
         });
