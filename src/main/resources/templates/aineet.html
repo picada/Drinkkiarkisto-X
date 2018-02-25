@@ -10,7 +10,6 @@
     </head>
 
     <body>
-<<<<<<< HEAD
 
         <div class="navbar">
             <span id="header">DRINKKIARKISTO X</span><br/><br/>
@@ -49,24 +48,6 @@
             <br/><br/>
            
         </div>
-=======
-        <h1>Raaka-aineet</h1>
 
-        <ol>
-            <li th:each="aine: ${aineet}">
-                <span th:text="${aine.nimi}">aineen nimi</span> <a th:href="${'/aineet/' + aine.id}">Tilastot</a>Ja lisäks poistonappi!
-            </li>
-        </ol>
-
-        <h2> Lisää uusi raaka-aine:</h2>
-
-        <form method="POST" action="/lisaaAine">
-            Raaka-aineen nimi:<br/>
-            <input type="text" name="nimi"/><br/>
-            <input type="submit" value="Lisää RaakaAine"/>
-        </form>
-
-        <a href="/"> Takaisin etusivulle</a>
->>>>>>> 0d55d252b68c805c57707877fcb5a8f9f95116a6
     </body>
 </html> 
