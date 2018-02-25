@@ -84,7 +84,7 @@ public class DrinkkiRaakaAine implements Comparable<DrinkkiRaakaAine> {
         if (!this.ohje.equals("")) {
             ohjeet = ": "+ ohje;
         }
-        return maara + " " + aineNimi +  ohjeet;
+        return aineNimi + ", " + maara + ohjeet;
     }
     
     

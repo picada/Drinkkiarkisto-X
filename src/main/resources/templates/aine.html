@@ -23,7 +23,7 @@
 
         <h2><span th:text="${aine.nimi}">drinkki</span></h2>
 
-        <p>Tältä sivulta löydät tarkemmat tilastot raaka-aineeseen <span th:text="${aine.nimi}">aine</span> liittyen.</p>
+        <p>Tältä sivulta löytyvät tarkemmat tilastot raaka-aineeseen <span th:text="${aine.nimi}">aine</span> liittyen.</p>
         <h3>Raaka-aine <span th:text="${aine.nimi}">drinkki</span> on käytössä seuraavissa drinkeissä:</h3>
 
         <ul>
@@ -34,9 +34,11 @@
 
         <div th:if="${drinkit.empty}">
             <p>Raaka-aine ei toistaiseksi ole käytössä yhdessäkään reseptissä</p>
+            <a href="/drinkit">Korjaa tilanne!</a>
         </div>
-
-        <h3>Muuta tilastointia, mitä?</h3>
+        <br/>
+        <br/>
+        
 
         </div>
     </body>
