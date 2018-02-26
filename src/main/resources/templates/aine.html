@@ -18,27 +18,32 @@
             <span>&ensp;|&ensp;</span>
             <a class="nav" href="../aineet">RAAKA-AINEET</a>
         </div>
-        
+
         <div class="content">
 
-        <h2><span th:text="${aine.nimi}">drinkki</span></h2>
+            <h2><span th:text="${aine.nimi}">drinkki</span></h2>
 
-        <p>Tältä sivulta löytyvät tarkemmat tilastot raaka-aineeseen <span th:text="${aine.nimi}">aine</span> liittyen.</p>
-        <h3>Raaka-aine <span th:text="${aine.nimi}">drinkki</span> on käytössä seuraavissa drinkeissä:</h3>
+            <p>Tältä sivulta löytyvät tarkemmat tilastot raaka-aineeseen <span th:text="${aine.nimi}">aine</span> liittyen.</p>
+            <h3>
+                Raaka-aine <span th:text="${aine.nimi}">drinkki</span> on käytössä seuraavissa drinkeissä
+                <span th:if="${!maara == 0}">
+                    (yhteensä <span th:text="${maara}">maara</span> drinkkiä)
+                </span>:
+            </h3>
 
-        <ul>
-            <li th:each="drinkki: ${drinkit}">
-               <a th:href="${'/drinkit/' + drinkki.id}"> <span th:text="${drinkki.nimi}">drinkki nimi</span> </a>
-            </li>
-        </ul>
+            <ul>
+                <li th:each="drinkki: ${drinkit}">
+                    <a th:href="${'/drinkit/' + drinkki.id}"> <span th:text="${drinkki.nimi}">drinkki nimi</span> </a>
+                </li>
+            </ul>
 
-        <div th:if="${drinkit.empty}">
-            <p>Raaka-aine ei toistaiseksi ole käytössä yhdessäkään reseptissä</p>
-            <a href="/drinkit">Korjaa tilanne!</a>
-        </div>
-        <br/>
-        <br/>
-        <a href="/aineet">Takaisin raaka-ainelistaukseen</a>
+            <div th:if="${drinkit.empty}">
+                <p>Raaka-aine ei toistaiseksi ole käytössä yhdessäkään reseptissä</p>
+                <a href="/drinkit">Korjaa tilanne!</a>
+            </div>
+            <br/>
+            <br/>
+            <a href="/aineet">Takaisin raaka-ainelistaukseen</a>
 
         </div>
     </body>

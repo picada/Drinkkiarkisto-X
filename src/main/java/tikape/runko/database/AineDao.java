@@ -142,5 +142,18 @@ public class AineDao implements Dao<RaakaAine, Integer> {
 
         return null;
     }
+    
+    public int drinkCount(Integer key) throws SQLException {
+
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS total FROM DrinkkiRaakaAine "
+                    + "WHERE raakaaine_id = ?");
+            stmt.setInt(1, key);
+            ResultSet rs = stmt.executeQuery();
+            
+            return rs.getInt("total");
+        }
+
+    }
 
 }

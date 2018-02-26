@@ -153,6 +153,11 @@ public class DrinkkiAineDao implements Dao<DrinkkiRaakaAine, Integer> {
 
             return new DrinkkiRaakaAine(nimi, drinkkiId, raakaAineId, jarjestys, maara, ohje);
         }
+        
+        
     }
+    
+    
+    
 
 }

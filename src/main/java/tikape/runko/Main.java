@@ -62,6 +62,7 @@ public class Main {
             int raakaAineId = Integer.parseInt(req.params(":id"));
             map.put("aine", aineet.findOne(raakaAineId));
             map.put("drinkit", drinkit.findDrinkit(raakaAineId));
+            map.put("maara", aineet.drinkCount(Integer.parseInt(req.params(":id"))));
 
             return new ModelAndView(map, "aine");
         }, new ThymeleafTemplateEngine());
