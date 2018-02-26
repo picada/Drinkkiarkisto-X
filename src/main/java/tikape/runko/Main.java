@@ -88,6 +88,14 @@ public class Main {
             res.redirect("/drinkit");
             return "";
         });
+        
+        Spark.post("/uusiaine", (req, res) -> {
+            RaakaAine aine = new RaakaAine(-1, req.queryParams("name"));
+            aineet.saveOrUpdate(aine);
+
+            res.redirect("/drinkit");
+            return "";
+        });
 
         Spark.post("/lisaa", (req, res) -> {
 
