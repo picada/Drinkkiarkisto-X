@@ -13,6 +13,11 @@ public class Database {
     }
 
     public Connection getConnection() throws SQLException {
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        if (dbUrl != null && dbUrl.length() > 0) {
+            return DriverManager.getConnection(dbUrl);
+        }
+
         return DriverManager.getConnection(databaseAddress);
     }
 
@@ -43,7 +48,7 @@ public class Database {
         lista.add("INSERT INTO Drinkki (nimi) VALUES ('Platon');");
         lista.add("INSERT INTO Drikki (nimi) VALUES ('Aristoteles');");
         lista.add("INSERT INTO Drinkki (nimi) VALUES ('Homeros');");
-        
+
         lista.add("INSERT INTO RaakaAine (nimi) VALUES ('Sipuli');");
         lista.add("INSERT INTO RaakaAine (nimi) VALUES ('Peruna');");
         lista.add("INSERT INTO RaakaAine (nimi) VALUES ('Kurkku');");

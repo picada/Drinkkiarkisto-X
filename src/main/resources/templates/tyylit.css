@@ -1,9 +1,4 @@
 
-:body:before {
-    content: url(cocktail.jpg);
-    visibility: hidden;
-}
-
 html { 
     background: url(cocktail.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -34,9 +29,9 @@ body {
 
 
 ul {
-    list-style-type: none;
-    padding-left: 0;
-}
+        list-style-type: none;
+        padding-left: 0;
+    }
 
 form {
     font-size: 0.7 em;
