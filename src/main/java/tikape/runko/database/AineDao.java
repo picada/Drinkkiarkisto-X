@@ -150,7 +150,7 @@ public class AineDao implements Dao<RaakaAine, Integer> {
                     + "WHERE raakaaine_id = ?");
             stmt.setInt(1, key);
             ResultSet rs = stmt.executeQuery();
-            
+            rs.next();
             return rs.getInt("total");
         }
 
