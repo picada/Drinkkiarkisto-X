@@ -26,9 +26,7 @@
             <p>Tältä sivulta löytyvät tarkemmat tilastot raaka-aineeseen <span th:text="${aine.nimi}">aine</span> liittyen.</p>
             <h3>
                 Raaka-aine <span th:text="${aine.nimi}">drinkki</span> on käytössä seuraavissa drinkeissä
-                <span th:if="${!maara == 0}">
-                    (yhteensä <span th:text="${maara}">maara</span> drinkkiä)
-                </span>:
+                <span th:if="${!maara == 0}"> (yhteensä <span th:text="${maara}">maara</span> drinkkiä)</span>:
             </h3>
 
             <ul>
